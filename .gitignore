@@ -1,0 +1,5 @@
+# Directories
+.stack-work
+
+# Files
+*.db
