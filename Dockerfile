@@ -19,6 +19,7 @@ COPY --from=build /app/application /app
 RUN apk add libffi gmp
 
 ENV DATABASE_FILE quiver.db
+ENV PORT 80
 
 EXPOSE 80
 
