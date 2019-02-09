@@ -22,4 +22,5 @@ executable quiver
                      , http-types
                      , monad-control
                      , scotty
+                     , uuid
                      , wai-extra
