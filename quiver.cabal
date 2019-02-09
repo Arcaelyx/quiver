@@ -23,5 +23,6 @@ executable quiver
                      , monad-control
                      , scotty
                      , sqlite-simple
+                     , text
                      , uuid
                      , wai-extra
