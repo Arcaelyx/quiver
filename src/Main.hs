@@ -3,6 +3,7 @@
 module Main where
 
 import Data.Aeson
+import Database.SQLite.Simple
 import GHC.Generics
 import Network.Wai.Middleware.RequestLogger
 import System.Environment
@@ -13,6 +14,9 @@ data Email = Email String deriving (Generic, Show)
 instance FromJSON Email where
   parseJSON (Object v) =
     Email <$> v .: "email"
+
+insertQuery :: Database.SQLite.Simple.Query
+insertQuery = "INSERT INTO subscriber (id, email) VALUES (?, ?)"
 
 main :: IO ()
 main = do
