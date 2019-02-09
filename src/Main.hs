@@ -18,6 +18,9 @@ instance FromJSON Email where
 insertQuery :: Database.SQLite.Simple.Query
 insertQuery = "INSERT INTO subscriber (id, email) VALUES (?, ?)"
 
+fromEmail :: Email -> String
+fromEmail (Email email) = email
+
 main :: IO ()
 main = do
   port <- getEnv "PORT"
