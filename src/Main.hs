@@ -37,6 +37,8 @@ createSubscriber connection = do
 
 main :: IO ()
 main = do
+  dbFile <- getEnv "DATABASE_FILE"
   port <- getEnv "PORT"
+  connection <- open dbFile
   scotty (read port) $ do
     middleware logStdoutDev
