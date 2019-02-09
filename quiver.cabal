@@ -19,6 +19,7 @@ executable quiver
   default-language:    Haskell2010
   build-depends:       base >= 4.7 && < 5
                      , aeson
+                     , http-types
                      , monad-control
                      , scotty
                      , wai-extra
