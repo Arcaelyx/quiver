@@ -37,4 +37,4 @@ main = do
   connection <- open dbFile
   scotty (read port) $ do
     middleware logStdoutDev
-    post "/" $ do createSubscriber connection
+    post "/" $ createSubscriber connection
