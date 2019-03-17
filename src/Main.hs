@@ -16,23 +16,18 @@ import Web.Scotty.Internal.Types (ActionT)
 
 import qualified Data.UUID.V4 as UUIDV4
 
-data Email = Email String deriving (Generic, Show)
+data Email = Email { email :: String } deriving (Generic, Show)
 
-instance FromJSON Email where
-  parseJSON (Object v) =
-    Email <$> v .: "email"
+instance FromJSON Email
 
 insertQuery :: Database.SQLite.Simple.Query
 insertQuery = "INSERT INTO subscriber (id, email) VALUES (?, ?)"
 
-fromEmail :: Email -> String
-fromEmail (Email email) = email
-
 createSubscriber :: Connection -> ActionT Text IO ()
 createSubscriber connection = do
-  (email :: Email) <- jsonData
+  (e :: Email) <- jsonData
   id <- liftIO $ UUIDV4.nextRandom
-  liftIO $ execute connection insertQuery (toString id, fromEmail email)
+  liftIO $ execute connection insertQuery (toString id, email e)
   status status201
 
 main :: IO ()
